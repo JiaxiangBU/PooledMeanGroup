@@ -1,0 +1,16 @@
+cd2b520f85755c1f80fad9441f628530 *DESCRIPTION
+c1f5dcc60ab09b43f589aaca859081e6 *NAMESPACE
+0fb0c9a614fcadbc293a6642001d3ce0 *R/kod_PMG.R
+8198eb4dd7417d515dcb11ba60b356cc *build/partial.rdb
+1c01b5831caccbba06b4a5cbe9839973 *data/DataExp.RData
+d68abd348e0b39ab1633596ddfcf212e *man/BGtest.Rd
+615fbb0d228714d57cb30dc1f885d42d *man/ConoverMulti.Rd
+5fbb152f022cee902d73bdd51abbbd62 *man/DataExp.Rd
+d48a6b87193f63577e5a0bdadd23276c *man/DiffPanel.Rd
+c20856f778aae81fdfea8d15607c8299 *man/GQtest.Rd
+48a697d6756f9e5666af6b4c21900969 *man/JBtest.Rd
+490bec1b52fedccff887d53e08af3f52 *man/LagPanel.Rd
+3ba1940a189d9779118668551f3cd3a7 *man/PMG.Rd
+5727c46343cdeb82e80759109eb9bea8 *man/PanelNaOmit.Rd
+b5f9df19e9cadc00c429c6727a05345b *man/PooledMeanGroup-package.Rd
+c1f0d87f9c2fb4a6147bb292661ae50a *man/optimPMG.Rd

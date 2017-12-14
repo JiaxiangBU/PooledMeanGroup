@@ -1,0 +1,2 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("stats", "coef", "cor", "lm", "na.omit", "pchisq", "pf", "pnorm", "qnorm", "resid")
