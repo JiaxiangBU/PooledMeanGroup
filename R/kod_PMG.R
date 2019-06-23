@@ -9,7 +9,7 @@ vari=variable
 quan=quantity
 do=cumsum(quan)
 od=(do-quan)+1
-if (is.data.frame(vari)) variDIFF=as.matrix(as.numeric(vari[,1])) else
+if (is.data.frame(vari)) variDIFF=as.matrix(as.numeric(vari[[1]])) else
 variDIFF=as.matrix(as.numeric(vari))
 DIFF=NULL
 for (i in 1:length(quan))
@@ -126,14 +126,14 @@ if (PodzialSuma>licznosc)
  podzial_pom=0
  for (i in 1:length(podzial))
   { # poczatek petli
-  if (cumsum(podzial)[i]>licznosc) 
+  if (cumsum(podzial)[i]>licznosc)
   { # poczatek if
    if (sum(podzial_pom)<licznosc)
    { # poczatek if
    podzial_pom=podzial[1:(i-1)]
    podzial_pom[i]=licznosc-sum(podzial[1:(i-1)])
   } # koniec if
-  } # koniec if  
+  } # koniec if
  } # koniec petli
  podzial=podzial_pom
  } # koniec if
@@ -186,7 +186,7 @@ SzeregStackOdchylenSort=SzeregStackOdchylen[kolejnosc,]
 # rangowanie
 Rangi=rank(SzeregStackOdchylenSort[,1], ties.method="average")
 
-# macierze: odchylenia, numer szeregu, rangi, rangi^2, rangi^4 
+# macierze: odchylenia, numer szeregu, rangi, rangi^2, rangi^4
 Rangi=cbind(SzeregStackOdchylenSort[,1], SzeregStackOdchylenSort[,2], as.matrix(Rangi), as.matrix(Rangi^2), as.matrix(Rangi^4))
 
 # liczenie si
@@ -374,7 +374,7 @@ paramSR=vector("list", length=noN)
 # reszty relacji (6)
 reszty=vector("list", length=noN)
 
-# obiekty do estymatora macierz wariancji i kowariancji czyli elementy diagonalne 
+# obiekty do estymatora macierz wariancji i kowariancji czyli elementy diagonalne
 # i piewszy wiersz zkladajacy sie z varTeta i varFirstRow (por strona 626)
 varTeta=matrix(0, (length(vecLR)-1), (length(vecLR)-1))
 varFirstRowFi=NULL
