@@ -290,8 +290,7 @@ noN=length(quantities)
 if (!is.numeric(vecSR[[1]]))
 { # pocz if
 pomvecSR=list()
-for (i in 1:noN)
-{ # pocz i
+for (i in 1:noN) { # pocz i
 pomvecSR[[length(pomvecSR)+1]]=match(vecSR[[i]],names(dataset))
 } # kon i
 vecSR=pomvecSR
