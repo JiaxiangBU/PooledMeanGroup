@@ -416,6 +416,7 @@ PMG = function(paramTeta,
          pomW = cbind(pomW, 1)
       W[[i]] = pomW
       dy[[i]] = as.matrix(dataset[od[i]:do[i], nodY[i]])
+      print(dy)
    } # kon i
 
    # macierz H=I-W(W'W)^-1W'
@@ -743,6 +744,8 @@ optimPMG = function(dLL,
    # pocz pmg
    i = 0
    dLLHat = dLL + 1
+   # dLLHat > i
+   # Just add a while loop
    while (i <= maxIter & dLLHat >= dLL)
    {
       # pocz while
