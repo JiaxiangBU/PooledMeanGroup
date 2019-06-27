@@ -461,14 +461,14 @@ PMG = function(paramTeta,
    {
       # pocz i
       pomW = W[[i]]                                                                         # tworzenie macierzy W
-      pomH = diag(1, nrow(pomW), nrow(pomW)) - pomW %*% solve(t(pomW) %*% pomW) %*%
+      pomH = diag(1, nrow(pomW), nrow(pomW)) - pomW %*% solve(t(pomW) %*% pomW,tol=1e-40) %*%
          t(pomW)          # tworzeniem macierzy H
       H[[i]] = pomH                                                                         # wybrane Hi
 
       pomKsiTeta = KsiTeta[[i]]
       pomdy = dy[[i]]
 
-      pomFi = solve(t(pomKsiTeta) %*% pomH %*% pomKsiTeta) %*% t(pomKsiTeta) %*%
+      pomFi = solve(t(pomKsiTeta) %*% pomH %*% pomKsiTeta,tol=1e-40) %*% t(pomKsiTeta) %*%
          pomH %*% pomdy       # parametry fi liczone z relacji (10)
       pomFi = as.numeric(pomFi)
       Fi[[i]] = pomFi
@@ -544,7 +544,7 @@ PMG = function(paramTeta,
       pomNawias1 = pomNawias1 + as.matrix(Nawias1[[i]])
       pomNawias2 = pomNawias2 + as.matrix(Nawias2[[i]])
    } # kon i
-   TetaHat = (-1) * solve(pomNawias1) %*% pomNawias2   # nowa ocena parametru teta z relacji (9)
+   TetaHat = (-1) * solve(pomNawias1,tol=1e-40) %*% pomNawias2   # nowa ocena parametru teta z relacji (9)
 
    # liczenie LogL
    LogL = (-nrow(pomW) / 2) * suma1 - 0.5 * suma2
@@ -555,7 +555,7 @@ PMG = function(paramTeta,
    wiersz3 = cbind(t(varMixedFiSR), varSR)
    kolumna1 = t(cbind(varTeta, varFirstRowFi, varFirstRowSR))
    varcovarAll = cbind(kolumna1, rbind(wiersz1, wiersz2, wiersz3))
-   varcovarAllodw = solve(varcovarAll)
+   varcovarAllodw = solve(varcovarAll,tol=1e-40)
    BledySzacunku = sqrt(diag(varcovarAllodw))
 
    # liczenie statystyk t-studenta i prob w czesci dlugookresowej
@@ -620,8 +620,9 @@ PMG = function(paramTeta,
       # pocz i
       oddoSR[[length(oddoSR) + 1]] <-
          seq(
-            from = max(oddoSR[[i - 1]]) + 1,
+            from = max(oddoSR[[i - 1]], na.rm = TRUE) + 1,
             len = nrow(paramSR[[i]]),
+            # theoretically, two colunmns.
             by = 1
          )
    } # kon i
@@ -746,7 +747,7 @@ optimPMG = function(dLL,
    dLLHat = dLL + 1
    # dLLHat > i
    # Just add a while loop
-   while (i <= maxIter & dLLHat >= dLL)
+   while (i <= maxIter & dLLHat >= dLL & !is.na(i) & !is.na(maxIter) & !is.na(dLLHat) & !is.na(dLL))
    {
       # pocz while
       if (i == 0)
